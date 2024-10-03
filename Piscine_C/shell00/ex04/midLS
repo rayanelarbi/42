@@ -1,0 +1,1 @@
+ls -p --sort=time --format=comma | grep -v '^\.'
