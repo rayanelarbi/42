@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 02:12:32 by rlarbi            #+#    #+#             */
-/*   Updated: 2024/11/12 16:28:41 by rlarbi           ###   ########.fr       */
+/*   Updated: 2024/11/14 14:53:45 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ int	ft_atoi(const char *str)
 //     const char *test4 = "  \t\n\r\v\f123abc";
 //     const char *test5 = "abc123";
 
-//     printf("Test 1: %d\n", ft_atoi(test1));  // Devrait afficher -12345
-//     printf("Test 2: %d\n", ft_atoi(test2));  // Devrait afficher 42
-//     printf("Test 3: %d\n", ft_atoi(test3));  // Devrait afficher 789
-//     printf("Test 4: %d\n", ft_atoi(test4));  // Devrait afficher 123
-//     printf("Test 5: %d\n", ft_atoi(test5));  // Devrait afficher 0
+//     printf("Test 1: %d\n", ft_atoi(test1));  // Should print -12345
+//     printf("Test 2: %d\n", ft_atoi(test2));  // Should print 42
+//     printf("Test 3: %d\n", ft_atoi(test3));  // Should print 789
+//     printf("Test 4: %d\n", ft_atoi(test4));  // Should print 123
+//     printf("Test 5: %d\n", ft_atoi(test5));  // Should print 0
 
 //     return (0);
 // }

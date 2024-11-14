@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 12:09:05 by rlarbi            #+#    #+#             */
-/*   Updated: 2024/11/05 16:25:37 by rlarbi           ###   ########.fr       */
+/*   Updated: 2024/11/14 14:57:01 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,15 @@ void	*ft_memmove(void *dest, const void *src, size_t len)
 	char	overlap_src[] = "1234567890";
 	char	dest1[20];
 
-	// Cas 1 : Test sans chevauchement
-	ft_memmove(dest1, src1, sizeof(src1)); // Copie src1 dans dest1
-	printf("Cas 1 - Sans chevauchement : %s\n", dest1);
+	// Cas 1 : Test without overlap
+	ft_memmove(dest1, src1, sizeof(src1)); // Copy src1 in dest1
+	printf("Cas 1 - Without overlap : %s\n", dest1);
 
-	// Cas 2 : Test avec chevauchement
-	// On utilise overlap_src pour qu'il y ait chevauchement
+	// Cas 2 : Test with overlap
+	// We use overlap_src so that there is an overlap
 	ft_memmove(overlap_src + 4, overlap_src, 6);
-	// Move les 6 first char de overlap_src 4 positions vers la droite
-	printf("Cas 2 - Avec chevauchement : %s\n", overlap_src);
+	// Move the 6 first char of overlap_src 4 positions to the right
+	printf("Cas 2 - With overlap : %s\n", overlap_src);
 
 	return (0);
 }*/

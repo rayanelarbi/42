@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:39:46 by rlarbi            #+#    #+#             */
-/*   Updated: 2024/11/05 17:03:29 by rlarbi           ###   ########.fr       */
+/*   Updated: 2024/11/14 14:59:48 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 //     char dst2[10];
 //     char dst3[5];
 
-//     // Test 1: Copie complète
+//     // Test 1: Copy complète
 //     size_t len1 = ft_strlcpy(dst1, src1, sizeof(dst1));
 //     printf("Test 1 - Copie complète:\n");
 //     printf("dst: '%s', Length of src: %zu\n\n", dst1, len1);

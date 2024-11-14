@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 15:09:32 by rlarbi            #+#    #+#             */
-/*   Updated: 2024/11/13 15:24:43 by rlarbi           ###   ########.fr       */
+/*   Updated: 2024/11/14 11:44:02 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,9 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	size_t	i;
-
-	i = 0;
-	while (s[i] != '\0')
-	{
-		if (s[i] == (char)c)
-			return ((char *)&s[i]);
-		i++;
-	}
-	if (s[i] == (char)c)
-		return ((char *)&s[i]);
-	return (NULL);
+	while (*s != '\0' && c != *s)
+		s++;
+	if (c == *s)
+		return ((char *)s);
+	return (0);
 }
