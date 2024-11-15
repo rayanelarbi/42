@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 17:16:20 by rlarbi            #+#    #+#             */
-/*   Updated: 2024/11/14 17:22:51 by rlarbi           ###   ########.fr       */
+/*   Updated: 2024/11/15 17:30:07 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,4 +14,22 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
+	size_t	nb;
+	char	c;
+
+	if (nb == -2147483648)
+	{
+		write(fd, "-2147483648", 11);
+		return ;
+	}
+	if (n < 0)
+	{
+		write(fd, "-", 1);
+		n = -n;
+	}
+	nb = n % 10;
+	if (n >= 10)
+		ft_putnbr_fd(n / 10, fd);
+	c = nb + '0';
+	write(fd, &c, 1);
 }

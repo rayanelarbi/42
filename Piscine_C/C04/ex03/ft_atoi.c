@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlarbi <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 20:31:42 by rlarbi            #+#    #+#             */
-/*   Updated: 2024/09/27 10:33:13 by rlarbi           ###   ########.fr       */
+/*   Updated: 2024/11/15 17:28:08 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ int	ft_atoi(char *str)
 	}
 	return (l * negative);
 }
-int	main()
+/*int	main()
 {
 	ft_atoi("---++--+123ab567");
 	printf("%d\n", ft_atoi("---++--+123ab567"));
-} 
+}*/

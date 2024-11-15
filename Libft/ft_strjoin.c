@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/14 15:39:06 by rlarbi            #+#    #+#             */
-/*   Updated: 2024/11/14 17:35:02 by rlarbi           ###   ########.fr       */
+/*   Created: 2024/11/15 16:36:10 by rlarbi            #+#    #+#             */
+/*   Updated: 2024/11/15 17:08:34 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+char	ft_strjoin(char const *s1, char const *s2)
 {
-	write(fd, s, ft_strlen(s));
+
 }
