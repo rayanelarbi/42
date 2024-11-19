@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/15 16:36:10 by rlarbi            #+#    #+#             */
-/*   Updated: 2024/11/15 17:56:49 by rlarbi           ###   ########.fr       */
+/*   Created: 2024/11/19 09:58:39 by rlarbi            #+#    #+#             */
+/*   Updated: 2024/11/19 10:09:15 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	size_t	i;
-	size_t	j;
-
+	if (!lst || !del)
+		return ;
+	del(lst->content);
+	free(lst);
 }
