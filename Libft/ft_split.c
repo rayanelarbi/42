@@ -6,12 +6,11 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:13:02 by rlarbi            #+#    #+#             */
-/*   Updated: 2024/11/19 17:17:18 by rlarbi           ###   ########.fr       */
+/*   Updated: 2024/11/19 18:26:42 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 // Count the nb of words
 static size_t	count_words(char const *s, char c)
