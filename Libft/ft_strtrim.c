@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 22:08:39 by rlarbi            #+#    #+#             */
-/*   Updated: 2024/11/21 14:21:43 by rlarbi           ###   ########.fr       */
+/*   Updated: 2024/11/21 14:37:57 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 // Return substr from index 0 to i inclusive is extracted and returned
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	char	*trimmed;
+	char	*trim;
 	int		start;
 	int		end;
 
@@ -33,9 +33,9 @@ char	*ft_strtrim(char const *s1, char const *set)
 		--end;
 	if (start > end)
 		return (ft_strdup(""));
-	trimmed = malloc((end - start) + 2);
-	if (NULL == trimmed)
+	trim = malloc((end - start) + 2);
+	if (trim == NULL)
 		return (NULL);
-	ft_strlcpy(trimmed, s1 + start, (end - start) + 2);
-	return (trimmed);
+	ft_strlcpy(trim, s1 + start, (end - start) + 2);
+	return (trim);
 }
