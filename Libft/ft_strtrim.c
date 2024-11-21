@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 22:08:39 by rlarbi            #+#    #+#             */
-/*   Updated: 2024/11/21 14:09:50 by rlarbi           ###   ########.fr       */
+/*   Updated: 2024/11/21 14:21:43 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 // Return substr from index 0 to i inclusive is extracted and returned
 char	*ft_strtrim(char const *s1, char const *set)
 {
+	char	*trimmed;
 	int		start;
 	int		end;
-	char	*trimmed;
 
-	if (NULL == s1 || NULL == set)
+	if (s1 == NULL || set == NULL)
 		return (NULL);
 	if (!*s1)
 		return (ft_strdup(s1));
@@ -39,48 +39,3 @@ char	*ft_strtrim(char const *s1, char const *set)
 	ft_strlcpy(trimmed, s1 + start, (end - start) + 2);
 	return (trimmed);
 }
-/*int	main(void)
-{
-	char	*str;
-	char	*set;
-	char	*result;
-
-	// Test &
-	str = "   Hello, World!   ";
-	set = " ";
-	result = ft_strtrim(str, set);
-	printf("Trim de \"%s\" avec set \"%s\" : \"%s\"\n", str, set, result);
-	free(result);
-	// Trim 2 sides
-	str = "---42Nice---";
-	set = "-";
-	result = ft_strtrim(str, set);
-	printf("Trim de \"%s\" avec set \"%s\" : \"%s\"\n", str, set, result);
-	free(result);
-	// Test 3
-	str = "##Welcome##";
-	set = "#";
-	result = ft_strtrim(str, set);
-	printf("Trim de \"%s\" avec set \"%s\" : \"%s\"\n", str, set, result);
-	free(result);
-	// Test 4
-	str = "Hello!";
-	set = "#";
-	result = ft_strtrim(str, set);
-	printf("Trim de \"%s\" avec set \"%s\" : \"%s\"\n", str, set, result);
-	free(result);
-	// Nothing
-	str = "";
-	set = "#";
-	result = ft_strtrim(str, set);
-	printf("Trim de chaîne vide \"%s\" avec set \"%s\" : \"%s\"\n", str, set,
-		result);
-	free(result);
-	// Set void
-	str = "42Nice";
-	set = "";
-	result = ft_strtrim(str, set);
-	printf("Trim de \"%s\" avec set vide \"%s\" : \"%s\"\n", str, set, result);
-	free(result);
-	return (0);
-}*/

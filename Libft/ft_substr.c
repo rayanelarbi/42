@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 21:50:54 by rlarbi            #+#    #+#             */
-/*   Updated: 2024/11/21 14:11:54 by rlarbi           ###   ########.fr       */
+/*   Updated: 2024/11/21 14:17:30 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*str;
 	size_t	s_len;
-	size_t	substring_len;
+	size_t	substr_len;
 
-	if (NULL == s)
+	if (s == NULL)
 		return (NULL);
 	s_len = ft_strlen(s);
 	if (start >= s_len)
 		return (ft_strdup(""));
-	substring_len = s_len - start;
-	if (len > substring_len)
-		len = substring_len;
+	substr_len = s_len - start;
+	if (len > substr_len)
+		len = substr_len;
 	str = malloc(len + 1);
 	if (NULL == str)
 		return (NULL);
