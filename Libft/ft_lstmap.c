@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:47:06 by rlarbi            #+#    #+#             */
-/*   Updated: 2024/11/19 15:11:00 by rlarbi           ###   ########.fr       */
+/*   Updated: 2024/11/21 15:57:28 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	t_list	*new_node;
 
 	if (!lst)
-		return ;
+		return (NULL);
 	new_list = NULL;
 	while (lst)
 	{
@@ -31,7 +31,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 			ft_lstclear(&new_list, del);
 			return (NULL);
 		}
-		ft_lstadd_back(&new_list, new_list);
+		ft_lstadd_back(&new_list, new_node);
 		lst = lst->next;
 	}
 	return (new_list);
