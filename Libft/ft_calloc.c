@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 15:08:34 by rlarbi            #+#    #+#             */
-/*   Updated: 2024/11/14 15:19:38 by rlarbi           ###   ########.fr       */
+/*   Updated: 2024/11/21 13:12:30 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,21 @@
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	void	*ptr;
+	size_t	i;
+	void	*p;
 
-	ptr = malloc(count * size);
-	if (ptr == NULL)
+	if (count == 0 || size == 0)
+	{
+		count = 1;
+		size = 1;
+	}
+	i = count * size;
+	p = malloc(i);
+	if (p == NULL)
 		return (NULL);
-	ft_bzero(ptr, count * size);
-	return (ptr);
+	else
+		ft_bzero(p, i);
+	return (p);
 }
 /*int	main(void)
 {
