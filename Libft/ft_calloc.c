@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 15:08:34 by rlarbi            #+#    #+#             */
-/*   Updated: 2024/11/21 13:57:16 by rlarbi           ###   ########.fr       */
+/*   Updated: 2024/11/21 14:05:49 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,17 @@
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	size_t	tot_size;
-	void	*dst;
+	unsigned char	*tab;
+	unsigned long	i;
 
-	tot_size = size * count;
-	if (!(dst = malloc(tot_size)))
-		return (0);
-	ft_memset(dst, 0, tot_size);
-	return (dst);
+	i = 0;
+	tab = malloc(count * size);
+	if (!tab)
+		return (NULL);
+	while (count * size > i)
+	{
+		tab[i] = 0;
+		i++;
+	}
+	return (tab);
 }
