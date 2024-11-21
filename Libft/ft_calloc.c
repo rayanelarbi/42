@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 15:08:34 by rlarbi            #+#    #+#             */
-/*   Updated: 2024/11/21 13:12:30 by rlarbi           ###   ########.fr       */
+/*   Updated: 2024/11/21 13:57:16 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,44 +14,12 @@
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	size_t	i;
-	void	*p;
+	size_t	tot_size;
+	void	*dst;
 
-	if (count == 0 || size == 0)
-	{
-		count = 1;
-		size = 1;
-	}
-	i = count * size;
-	p = malloc(i);
-	if (p == NULL)
-		return (NULL);
-	else
-		ft_bzero(p, i);
-	return (p);
+	tot_size = size * count;
+	if (!(dst = malloc(tot_size)))
+		return (0);
+	ft_memset(dst, 0, tot_size);
+	return (dst);
 }
-/*int	main(void)
-{
-	size_t	count;
-	size_t	size;
-	int		*arr;
-
-	count = 5;
-	size = sizeof(int);
-	// Allocation of memory for 5 integers
-	arr = (int *)ft_calloc(count, size);
-	if (arr == NULL)
-	{
-		printf("Allocation échouée.\n");
-		return (1);
-	}
-	// Check the values after ft_calloc, they should be 0
-	printf("Vérification des valeurs après ft_calloc:\n");
-	for (size_t i = 0; i < count; i++)
-	{
-		printf("arr[%zu] = %d\n", i, arr[i]);
-	}
-	// Free the allocated memory
-	free(arr);
-	return (0);
-}*/
