@@ -54,3 +54,5 @@ dkms.conf
 # For MACOS
 **/.DS_Store
 *.pdf
+*.docx
+*.txt
