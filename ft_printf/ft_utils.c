@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 21:57:44 by rlarbi            #+#    #+#             */
-/*   Updated: 2024/12/12 05:40:39 by rlarbi           ###   ########.fr       */
+/*   Updated: 2024/12/12 05:51:47 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	ft_putchar_len(char c, int *len)
 {
 	write(1, &c, 1);
-	(*len++);
+	(*len)++;
 }
 
 void	ft_string(char *args, int *len)
