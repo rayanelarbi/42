@@ -6,33 +6,20 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 05:30:35 by rlarbi            #+#    #+#             */
-/*   Updated: 2024/12/12 08:24:42 by rlarbi           ###   ########.fr       */
+/*   Updated: 2024/12/12 09:00:20 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putnbr_hex(size_t num, char *base_char, int *len)
+void	ft_pointer(size_t ptr, int *len)
 {
 	char	str[25];
 	int		i;
-
-	i = 0;
-	while (num != 0)
-	{
-		str[i] = base_char[num % 16];
-		num = num / 16;
-		i++;
-	}
-	while (i--)
-		ft_putchar_len(str[i], len);
-}
-
-void	ft_pointer(size_t ptr, int *len)
-{
 	char	*base_char;
 
 	base_char = "0123456789abcdef";
+	i = 0;
 	if (ptr == 0)
 	{
 		write(1, "(nil)", 5);
@@ -41,5 +28,14 @@ void	ft_pointer(size_t ptr, int *len)
 	}
 	write(1, "0x", 2);
 	(*len) += 2;
-	ft_putnbr_hex(ptr, base_char, len);
+	while (ptr != 0)
+	{
+		str[i] = base_char[ptr % 16];
+		ptr = ptr / 16;
+		i++;
+	}
+	while (i--)
+	{
+		ft_putchar_len(str[i], len);
+	}
 }
