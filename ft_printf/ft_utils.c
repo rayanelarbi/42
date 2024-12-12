@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 21:57:44 by rlarbi            #+#    #+#             */
-/*   Updated: 2024/12/12 05:51:47 by rlarbi           ###   ########.fr       */
+/*   Updated: 2024/12/12 05:58:10 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	ft_string(char *args, int *len)
 	i = 0;
 	if (!args)
 	{
-		write(1, "(nil)", 5);
-		(*len) += 5;
+		write(1, "(null)", 6);
+		(*len) += 6;
 		return ;
 	}
 	while (args[i] != '\0')
