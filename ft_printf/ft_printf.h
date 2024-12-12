@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 21:57:40 by rlarbi            #+#    #+#             */
-/*   Updated: 2024/12/12 06:09:50 by rlarbi           ###   ########.fr       */
+/*   Updated: 2024/12/12 09:15:10 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	ft_number(int nb, int *len);
 void	ft_hexadecimal(unsigned int x, int *len, char x_or_x);
 void	ft_unsigned_int(unsigned int u, int *len);
 void	ft_pointer(size_t ptr, int *len);
-void	ft_putnbr_hex(size_t num, char *base_char, int *len);
 
 int		ft_printf(const char *str, ...);
 #endif

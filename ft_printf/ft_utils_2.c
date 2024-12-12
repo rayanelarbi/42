@@ -6,12 +6,13 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 05:30:35 by rlarbi            #+#    #+#             */
-/*   Updated: 2024/12/12 09:04:25 by rlarbi           ###   ########.fr       */
+/*   Updated: 2024/12/12 09:13:24 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+// Pointer, (nil) for null
 void	ft_pointer(size_t ptr, int *len)
 {
 	char	str[25];

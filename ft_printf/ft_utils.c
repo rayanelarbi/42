@@ -6,19 +6,20 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 21:57:44 by rlarbi            #+#    #+#             */
-/*   Updated: 2024/12/12 05:58:10 by rlarbi           ###   ########.fr       */
+/*   Updated: 2024/12/12 09:27:17 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-// Lenght of characters
+// Putchar w' len
 void	ft_putchar_len(char c, int *len)
 {
 	write(1, &c, 1);
 	(*len)++;
 }
 
+// Str w' len
 void	ft_string(char *args, int *len)
 {
 	size_t	i;
@@ -37,6 +38,7 @@ void	ft_string(char *args, int *len)
 	}
 }
 
+// Number w' len
 void	ft_number(int nb, int *len)
 {
 	if (nb == -2147483648)
@@ -58,6 +60,7 @@ void	ft_number(int nb, int *len)
 	}
 }
 
+// Unsigned int w' len
 void	ft_unsigned_int(unsigned int u, int *len)
 {
 	if (u >= 10)
@@ -65,6 +68,7 @@ void	ft_unsigned_int(unsigned int u, int *len)
 	ft_putchar_len(u % 10 + '0', len);
 }
 
+// Hexadecimal w' len depends on XORX
 void	ft_hexadecimal(unsigned int x, int *len, char x_or_x)
 {
 	char	str[25];
