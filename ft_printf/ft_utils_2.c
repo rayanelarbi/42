@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 05:30:35 by rlarbi            #+#    #+#             */
-/*   Updated: 2024/12/12 06:10:46 by rlarbi           ###   ########.fr       */
+/*   Updated: 2024/12/12 08:24:42 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	ft_pointer(size_t ptr, int *len)
 	base_char = "0123456789abcdef";
 	if (ptr == 0)
 	{
-		write(1, "0x0", 3);
-		(*len) += 3;
+		write(1, "(nil)", 5);
+		(*len) += 5;
 		return ;
 	}
 	write(1, "0x", 2);
