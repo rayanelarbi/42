@@ -6,13 +6,13 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 23:28:10 by rlarbi            #+#    #+#             */
-/*   Updated: 2024/11/26 23:59:10 by rlarbi           ###   ########.fr       */
+/*   Updated: 2024/12/18 23:40:20 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strlen(char *str)
+int	ft_strlen(const char *str)
 {
 	size_t	i;
 
@@ -63,26 +63,26 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (str);
 }
 
-char	*ft_strndup(const char *s1, size_t n)
+void	ft_bzero(void *s, size_t n)
 {
-	char	*str;
-	size_t	i;
-	size_t	length;
+	unsigned char	*cp;
 
-	i = 0;
-	if (!s1)
-		return (NULL);
-	length = (size_t)ft_strlen(s1);
-	if (n < length)
-		length = n;
-	str = malloc((length + 1) * sizeof(char));
-	if (!str)
-		return (NULL);
-	while (i < length)
+	cp = s;
+	while (n > 0)
 	{
-		str[i] = s1[i];
-		i++;
+		*cp = '\0';
+		cp++;
+		n--;
 	}
-	str[i] = '\0';
-	return (str);
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*ptr;
+
+	ptr = malloc(count * size);
+	if (ptr == NULL)
+		return (NULL);
+	ft_bzero(ptr, size * count);
+	return (ptr);
 }
