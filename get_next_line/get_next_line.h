@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 23:27:44 by rlarbi            #+#    #+#             */
-/*   Updated: 2024/12/19 14:07:34 by rlarbi           ###   ########.fr       */
+/*   Updated: 2024/12/19 23:00:35 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 #  define BUFFER_SIZE 42
 # endif
 
-# include <fcntl.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 

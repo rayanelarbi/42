@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 23:27:17 by rlarbi            #+#    #+#             */
-/*   Updated: 2024/12/19 14:11:18 by rlarbi           ###   ########.fr       */
+/*   Updated: 2024/12/19 23:02:41 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,11 @@ char	*ft_extract_line(char *line)
 		str[i] = line[i];
 		i++;
 	}
-	while (line[i] && line[i] == '\n')
-		str[i++] = '\n';
+	if (line[i] && line[i] == '\n')
+	{
+		str[i] = '\n';
+		i++;
+	}
 	return (str);
 }
 
@@ -97,7 +100,36 @@ char	*ft_first_line(char *line)
 	return (str);
 }
 
-// TODO: Faire la fonction GNL
-// TODO: Join, allouer et libérer la memory
-// TODO: Lire la première ligne avec read
-// TODO: Prendre la ligne de sortie et la renvoyé
+char	*get_next_line(int fd)
+{
+	char		*output_line;
+	static char	*line;
+
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	line = ft_read_line(fd, line);
+	if (!line)
+		return (NULL);
+	output_line = ft_extract_line(line);
+	line = ft_first_line(line);
+	return (output_line);
+}
+
+/*int	main(void)
+{
+	char	*line;
+
+	int fd = open("test.txt", O_RDONLY); // Ouvrir le fichier en lecture
+	if (fd < 0)
+	{
+		perror("Erreur lors de l'ouverture du fichier");
+		return (1);
+	}
+	while ((line = get_next_line(fd)) != NULL) // Lire une ligne à la fois
+	{
+		printf("%s", line); // Afficher la ligne lue
+		free(line);         // Libérer la mémoire de la ligne après utilisation
+	}
+	close(fd); // Fermer le fichier
+	return (0);
+}*/
