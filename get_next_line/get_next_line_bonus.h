@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/26 23:27:44 by rlarbi            #+#    #+#             */
-/*   Updated: 2024/12/20 00:18:19 by rlarbi           ###   ########.fr       */
+/*   Created: 2024/12/19 23:46:49 by rlarbi            #+#    #+#             */
+/*   Updated: 2024/12/20 00:31:48 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
 
+# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 
