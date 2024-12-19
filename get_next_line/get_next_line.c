@@ -6,43 +6,47 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 23:27:17 by rlarbi            #+#    #+#             */
-/*   Updated: 2024/12/19 23:02:41 by rlarbi           ###   ########.fr       */
+/*   Updated: 2024/12/19 23:39:16 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_free_line(char *line, char *buffer)
+// Add the contents of a buffer to an existing string,
+// While handling the freeing of the original string's memory
+char	*ft_add_and_free(char *line, char *buffer)
 {
-	char	*tmp;
+	char	*new_line;
 
-	tmp = ft_strjoin(line, buffer);
+	new_line = ft_strjoin(line, buffer);
 	free(line);
-	return (tmp);
+	return (new_line);
 }
 
-char	*ft_read_line(int fd, char *line)
+// Reads a file, store the data in a buffer and add it to an existing string
+// Checks if a newline character was encountered to interrupt the read loop
+char	*ft_read_and_add(int fd, char *line)
 {
 	char	*buffer;
-	int		char_read;
+	int		bytes_read;
 
 	if (!line)
 		line = ft_calloc(1, 1);
 	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
 		return (NULL);
-	char_read = 1;
-	while (char_read > 0)
+	bytes_read = 1;
+	while (bytes_read > 0)
 	{
-		char_read = read(fd, buffer, BUFFER_SIZE);
-		if (char_read == -1)
+		bytes_read = read(fd, buffer, BUFFER_SIZE);
+		if (bytes_read == -1)
 		{
 			free(line);
 			free(buffer);
 			return (NULL);
 		}
-		buffer[char_read] = '\0';
-		line = ft_free_line(line, buffer);
+		buffer[bytes_read] = '\0';
+		line = ft_add_and_free(line, buffer);
 		if (ft_strchr(line, '\n'))
 			break ;
 	}
@@ -50,7 +54,9 @@ char	*ft_read_line(int fd, char *line)
 	return (line);
 }
 
-char	*ft_extract_line(char *line)
+// It copies the part of the line that precedes (and optionally includes),
+// the first newline character
+char	*ft_extract_until_newline(char *line)
 {
 	size_t	i;
 	char	*str;
@@ -75,11 +81,13 @@ char	*ft_extract_line(char *line)
 	return (str);
 }
 
-char	*ft_first_line(char *line)
+// Once a line has been extracted, this function deletes that part of the
+// Original line, leaving only the rest
+char	*ft_remove_until_newline(char *line)
 {
 	size_t	i;
 	size_t	j;
-	char	*str;
+	char	*remaining_line;
 
 	i = 0;
 	j = 0;
@@ -90,14 +98,14 @@ char	*ft_first_line(char *line)
 		free(line);
 		return (NULL);
 	}
-	str = ft_calloc((ft_strlen(line) - i + 1), sizeof(*line));
-	if (!str)
+	remaining_line = ft_calloc((ft_strlen(line) - i + 1), sizeof(*line));
+	if (!remaining_line)
 		return (NULL);
 	while (line[++i])
-		str[j++] = line[i];
-	str[j] = '\0';
+		remaining_line[j++] = line[i];
+	remaining_line[j] = '\0';
 	free(line);
-	return (str);
+	return (remaining_line);
 }
 
 char	*get_next_line(int fd)
@@ -107,11 +115,11 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	line = ft_read_line(fd, line);
+	line = ft_read_and_add(fd, line);
 	if (!line)
 		return (NULL);
-	output_line = ft_extract_line(line);
-	line = ft_first_line(line);
+	output_line = ft_extract_until_newline(line);
+	line = ft_remove_until_newline(line);
 	return (output_line);
 }
 
