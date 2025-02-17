@@ -3,54 +3,25 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
-SRCS = $(addprefix src/,
-       main.c
-       utils.c draw.c
-       map_parser.c
-       path_checker.c
-       game_utils.c
-       map_parser_utils.c
-       free.c)
+SRCS = main.c \
+       src/utils.c src/draw.c \
+       src/map_parser.c src/path_checker.c \
+       src/game_utils.c src/map_parser_utils.c \
+       src/free.c
 
-LIBFT = $(addprefix libft/,
-ft_atoi.c
-ft_bzero.c
-ft_calloc.c
-ft_isalnum.c
-ft_isalpha.c
-ft_isascii.c
-ft_isdigit.c
-ft_isprint.c
-ft_itoa.c
-ft_memchr.c
-ft_memcmp.c
-ft_memcpy.c
-ft_memmove.c
-ft_memset.c
-ft_putchar_fd.c
-ft_putendl_fd.c
-ft_putnbr_fd.c
-ft_putstr_fd.c
-ft_split.c
-ft_strchr.c
-ft_strdup.c
-ft_striteri.c
-ft_strjoin.c
-ft_strlcat.c
-ft_strlcpy.c
-ft_strlen.c
-ft_strmapi.c
-ft_strncmp.c
-ft_strnstr.c
-ft_strrchr.c
-ft_strtrim.c
-ft_substr.c
-ft_tolower.c
-ft_toupper.c
-gnl/get_next_line_bonus.c \
-printf/ft_printf.c \
-printf/ft_utils.c \
-printf/ft_utils_2.c)
+LIBFT = libft/ft_atoi.c libft/ft_bzero.c libft/ft_calloc.c \
+        libft/ft_isalnum.c libft/ft_isalpha.c libft/ft_isascii.c \
+        libft/ft_isdigit.c libft/ft_isprint.c libft/ft_itoa.c \
+        libft/ft_memchr.c libft/ft_memcmp.c libft/ft_memcpy.c \
+        libft/ft_memmove.c libft/ft_memset.c libft/ft_putchar_fd.c \
+        libft/ft_putendl_fd.c libft/ft_putnbr_fd.c libft/ft_putstr_fd.c \
+        libft/ft_split.c libft/ft_strchr.c libft/ft_strdup.c \
+        libft/ft_striteri.c libft/ft_strjoin.c libft/ft_strlcat.c \
+        libft/ft_strlcpy.c libft/ft_strlen.c libft/ft_strmapi.c \
+        libft/ft_strncmp.c libft/ft_strnstr.c libft/ft_strrchr.c \
+        libft/ft_strtrim.c libft/ft_substr.c libft/ft_tolower.c \
+        libft/ft_toupper.c gnl/get_next_line_bonus.c \
+        printf/ft_printf.c printf/ft_utils.c printf/ft_utils_2.c
 
 OBJS = $(SRCS:.c=.o)
 LIBFT_OBJ = $(LIBFT:.c=.o)
@@ -58,16 +29,18 @@ LIBFT_OBJ = $(LIBFT:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT_OBJ)
-	$(CC) $(CFLAGS) $^ -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	@echo "🔗 Linking executable..."
+	$(CC) $(CFLAGS) $^ -Lminilibx-linux -lmlx -lX11 -lXext -lm -o $(NAME)
+
 
 clean:
 	$(RM) $(OBJS) $(LIBFT_OBJ)
 
 fclean: clean
-	make clean -C mlx/
+	make clean -C minilibx-linux/
 	$(RM) $(NAME)
 
 re: fclean all
 
 %.o: %.c
-	$(CC) $(CFLAGS) -Imlx -Iincludes -c $< -o $@
+	$(CC) $(CFLAGS) -Iminilibx-linux -Iincludes -c $< -o $@
