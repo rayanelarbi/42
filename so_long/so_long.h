@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 12:20:16 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/02/10 12:43:43 by rlarbi           ###   ########.fr       */
+/*   Updated: 2025/02/28 09:41:10 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdarg.h>
-# include "minilibx-linux/mlx.h"
+# include "minilibx_opengl/mlx.h"
 # include "Libft+/include/ft_printf.h"
 # include "Libft+/include/get_next_line_bonus.h"
 # include "Libft+/include/libft.h"
