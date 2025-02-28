@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/11 15:26:56 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/02/28 10:28:29 by rlarbi           ###   ########.fr       */
+/*   Created: 2025/02/28 10:54:26 by rlarbi            #+#    #+#             */
+/*   Updated: 2025/02/28 11:13:05 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minilibx_opengl/mlx.h"
+#include "../minilibx_opengl/mlx.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -130,7 +130,6 @@ int	key_hook(int keycode, void *param)
 	int	new_x = player_x, new_y;
 
 	new_x = player_x, new_y = player_y;
-	new_x = player_x, new_y = player_y;
 	(void)param;
 	new_x = player_x, new_y = player_y;
 	if (keycode == 53)
@@ -189,6 +188,12 @@ void	load_textures_for_map(void)
 			&height); // Porte ouverte
 }
 
+// Fonction pour gérer la fermeture propre de la fenêtre
+int	close_window(void)
+{
+	exit(0);
+}
+
 int	main(int argc, char **argv)
 {
 	if (argc != 2)
@@ -204,6 +209,7 @@ int	main(int argc, char **argv)
 	read_map_from_file(argv[1]);
 	draw_map();
 	mlx_key_hook(win_ptr, key_hook, NULL);
+	mlx_hook(win_ptr, 17, 0, close_window, NULL); // Gestion de la fermeture de la fenêtre
 	mlx_loop(mlx_ptr);
 	return (0);
 }

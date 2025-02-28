@@ -3,7 +3,8 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
-SRCS = main.c \
+SRC_DIR = src
+SRCS = $(SRC_DIR)/main.c \
     #    src/utils.c src/draw.c \
     #    src/map_parser.c src/path_checker.c \
     #    src/game_utils.c src/map_parser_utils.c \
