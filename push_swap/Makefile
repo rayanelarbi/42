@@ -3,9 +3,8 @@ CC = gcc
 RM = rm -f
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = ft_printf.c \
-       ft_utils.c \
-       ft_utils_2.c
+SRC_DIR = src
+SRCS = $(SRC_DIR)main.c \
 
 OBJS = $(SRCS:.c=.o)
 
