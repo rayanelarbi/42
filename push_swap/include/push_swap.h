@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 23:57:30 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/03/25 16:06:08 by rlarbi           ###   ########.fr       */
+/*   Updated: 2025/03/26 16:21:04 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_stack
 }					t_stack;
 
 t_stack				*get_last_block(t_stack *stack);
+t_stack				*find_max(t_stack *stack);
 
 int					is_valid_number(char *arg);
 int					has_duplicate(t_stack *a, int n);
