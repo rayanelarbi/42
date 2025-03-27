@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 23:57:30 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/03/27 11:11:46 by rlarbi           ###   ########.fr       */
+/*   Updated: 2025/03/27 15:11:39 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+//REMOVEEEEEEEE
+# include <stdio.h>
 typedef struct s_stack
 {
 	int				nb;
@@ -34,6 +36,7 @@ t_stack				*get_last_block(t_stack *stack);
 t_stack				*find_max(t_stack *stack);
 t_stack				*find_min(t_stack *stack);
 int					stack_size(t_stack *stack);
+bool				is_sorted(t_stack *stack);
 
 void				sort_three(t_stack **a);
 
@@ -43,6 +46,10 @@ void				free_stack(t_stack **stack);
 void				free_errors(t_stack **a);
 
 char				**ft_split(char const *s, char c);
+
+void				init_stack_a(t_stack *a, char **array);
+long				ft_atol(const char *str);
+void				add_block(t_stack **a, int value);
 
 /*--------------------INSTRUCTIONS--------------------*/
 void				sa(t_stack **a, bool print);

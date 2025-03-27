@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 12:02:14 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/03/27 10:27:33 by rlarbi           ###   ########.fr       */
+/*   Updated: 2025/03/27 13:33:09 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,18 @@ int	stack_size(t_stack *stack)
 		stack = stack->next;
 	}
 	return (count);
+}
+
+// Check if the stack is sorted
+bool	is_sorted(t_stack *stack)
+{
+	if (!stack)
+		return (NULL);
+	while(stack && stack->next)
+	{
+		if (stack->nb > stack->next->nb)
+			return (false);
+		stack = stack->next;
+	}
+	return (true);
 }
