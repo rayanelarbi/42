@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 12:02:14 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/03/26 17:24:24 by rlarbi           ###   ########.fr       */
+/*   Updated: 2025/03/27 10:27:33 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,23 @@ t_stack	*find_max(t_stack *stack)
 		stack = stack->next;
 	}
 	return (max_block);
+}
+
+// Find the smallest block in the stack and return it
+t_stack	*find_min(t_stack *stack)
+{
+	t_stack	*min_block;
+
+	if (!stack)
+		return (NULL);
+	min_block = stack;
+	while (stack)
+	{
+		if (stack->nb < min_block->nb)
+			min_block = stack;
+		stack = stack->next;
+	}
+	return (min_block);
 }
 
 // Return the size of a stack

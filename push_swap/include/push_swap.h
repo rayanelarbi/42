@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 23:57:30 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/03/26 16:21:04 by rlarbi           ###   ########.fr       */
+/*   Updated: 2025/03/27 11:11:46 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,17 @@ typedef struct s_stack
 
 t_stack				*get_last_block(t_stack *stack);
 t_stack				*find_max(t_stack *stack);
+t_stack				*find_min(t_stack *stack);
+int					stack_size(t_stack *stack);
+
+void				sort_three(t_stack **a);
 
 int					is_valid_number(char *arg);
 int					has_duplicate(t_stack *a, int n);
 void				free_stack(t_stack **stack);
 void				free_errors(t_stack **a);
+
+char				**ft_split(char const *s, char c);
 
 /*--------------------INSTRUCTIONS--------------------*/
 void				sa(t_stack **a, bool print);
