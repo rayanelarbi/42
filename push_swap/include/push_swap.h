@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 23:57:30 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/03/29 18:47:26 by rlarbi           ###   ########.fr       */
+/*   Updated: 2025/03/29 20:48:47 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ char				**ft_split(char const *s, char c);
 void				init_stack_a(t_stack **a, char **array);
 void				turk_algorithm(t_stack **a, t_stack **b);
 void				set_target_a(t_stack **a, t_stack **b);
+void				push_cost(t_stack **a, t_stack **b);
+void				set_cheapest(t_stack **a);
 
 /*--------------------INSTRUCTIONS--------------------*/
 void				sa(t_stack **a);
