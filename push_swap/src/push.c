@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 14:17:27 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/03/19 18:11:18 by rlarbi           ###   ########.fr       */
+/*   Updated: 2025/03/29 15:41:29 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 static void	push(t_stack **dst, t_stack **src)
 {
 	t_stack	*push_block;
-
+	
 	if (!*src)
 		return ;
 	push_block = *src;
@@ -35,20 +35,19 @@ static void	push(t_stack **dst, t_stack **src)
 		push_block->next->prev = push_block;
 		*dst = push_block;
 	}
+
 }
 
 // Push the first element of b to a
-void	pa(t_stack **a, t_stack **b, bool print)
+void	pa(t_stack **a, t_stack **b)
 {
 	push(a, b);
-	if (print == false)
-		write(1, "pa\n", 3);
+	write(1, "pa\n", 3);
 }
 
 // // Push the first element of a to b
-void	pb(t_stack **b, t_stack **a, bool print)
+void	pb(t_stack **b, t_stack **a)
 {
 	push(b, a);
-	if (print == false)
-		write(1, "pb\n", 3);
+	write(1, "pb\n", 3);
 }

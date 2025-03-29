@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 23:57:30 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/03/27 15:11:39 by rlarbi           ###   ########.fr       */
+/*   Updated: 2025/03/29 18:47:26 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-//REMOVEEEEEEEE
+// REMOVEEEEEEEE
 # include <stdio.h>
 typedef struct s_stack
 {
@@ -47,14 +47,14 @@ void				free_errors(t_stack **a);
 
 char				**ft_split(char const *s, char c);
 
-void				init_stack_a(t_stack *a, char **array);
-long				ft_atol(const char *str);
-void				add_block(t_stack **a, int value);
+void				init_stack_a(t_stack **a, char **array);
+void				turk_algorithm(t_stack **a, t_stack **b);
+void				set_target_a(t_stack **a, t_stack **b);
 
 /*--------------------INSTRUCTIONS--------------------*/
-void				sa(t_stack **a, bool print);
-void				sb(t_stack **b, bool print);
-void				ss(t_stack **a, t_stack **b, bool print);
+void				sa(t_stack **a);
+void				sb(t_stack **b);
+void				ss(t_stack **a, t_stack **b);
 
 void				ra(t_stack **a, bool print);
 void				rb(t_stack **b, bool print);
@@ -64,7 +64,7 @@ void				rra(t_stack **a, bool print);
 void				rrb(t_stack **b, bool print);
 void				rrr(t_stack **a, t_stack **b, bool print);
 
-void				pa(t_stack **a, t_stack **b, bool print);
-void				pb(t_stack **b, t_stack **a, bool print);
+void				pa(t_stack **a, t_stack **b);
+void				pb(t_stack **b, t_stack **a);
 
 #endif

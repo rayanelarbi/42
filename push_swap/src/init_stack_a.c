@@ -6,13 +6,14 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 11:21:50 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/03/27 18:06:01 by rlarbi           ###   ########.fr       */
+/*   Updated: 2025/03/29 14:01:49 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-long	ft_atol(const char *str)
+// Convert a string in long
+static long	ft_atol(const char *str)
 {
 	size_t	i;
 	long	res;
@@ -34,7 +35,34 @@ long	ft_atol(const char *str)
 	return (res * sign);
 }
 
-void	init_stack_a(t_stack *a, char **array)
+// Add a new block in the end of the stack
+static void	add_block(t_stack **stack, int value)
+{
+	t_stack	*last_block;
+	t_stack	*block;
+
+	if (!stack)
+		return ;
+	block = malloc(sizeof(t_stack));
+	if (!block)
+		return ;
+	block->next = NULL;
+	block->nb = value;
+	if (!(*stack))
+	{
+		*stack = block;
+		block->prev = NULL;
+	}
+	else
+	{
+		last_block = get_last_block(*stack);
+		last_block->next = block;
+		block->prev = last_block;
+	}
+}
+
+// Initialize the a stack with the args in the CLI
+void	init_stack_a(t_stack **a, char **array)
 {
 	int		i;
 	long	nbr;
@@ -43,56 +71,13 @@ void	init_stack_a(t_stack *a, char **array)
 	while (array[i])
 	{
 		if (is_valid_number(array[i]))
-			free_errors(&a);
+			free_errors(a);
 		nbr = ft_atol(array[i]);
 		if (nbr > INT_MAX || nbr < INT_MIN)
-		{
-			free_errors(&a);
-		}
-		add_block(&a, (int)nbr);
-		if (has_duplicate(a, (int)nbr))
-		{
-			printf("number is already in stackk\n");
-		}
+			free_errors(a);
+		if (has_duplicate(*a, (int)nbr))
+			free_errors(a);
+		add_block(a, (int)nbr);
 		i++;
 	}
-}
-
-void	add_block(t_stack **a, int value)
-{
-	t_stack	*last;
-	t_stack	*new;
-
-	new = malloc(sizeof(t_stack));
-	if (!new)
-	{
-		free_errors(a);
-		return ;
-	}
-	return ;
-	new->nb = value;
-	new->next = NULL;
-	if (a == NULL)
-		return ;
-	if (*a == NULL)
-	{
-		*a = new;
-		new->prev = NULL;
-	}
-	else
-	{
-		last = get_last_block(*a);
-		last->next = new;
-		new->prev = last;
-	}
-}
-int	main(void)
-{
-	t_stack	*a;
-
-	a = NULL;
-	add_block(&a, 45);
-	add_block(&a, -77);
-	add_block(&a, 8);
-	printf("is value already in stack: %d\n", has_duplicate(a, 98));
 }
