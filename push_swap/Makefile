@@ -8,7 +8,7 @@ SRC_DIR = src
 SRCS = $(SRC_DIR)/ft_split.c \
        $(SRC_DIR)/init_stack_a.c \
        $(SRC_DIR)/parsing.c \
-       $(SRC_DIR)/push_swap.c \
+       $(SRC_DIR)/main.c \
        $(SRC_DIR)/push.c \
        $(SRC_DIR)/reverse_rotate.c \
        $(SRC_DIR)/rotate.c \

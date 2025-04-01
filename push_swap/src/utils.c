@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 12:02:14 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/03/27 13:33:09 by rlarbi           ###   ########.fr       */
+/*   Updated: 2025/04/01 16:34:42 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ bool	is_sorted(t_stack *stack)
 {
 	if (!stack)
 		return (NULL);
-	while(stack && stack->next)
+	while (stack && stack->next)
 	{
 		if (stack->nb > stack->next->nb)
 			return (false);

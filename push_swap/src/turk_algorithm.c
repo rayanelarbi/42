@@ -6,12 +6,13 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 15:02:50 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/03/29 20:47:55 by rlarbi           ###   ########.fr       */
+/*   Updated: 2025/04/01 16:48:58 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
+// Set the index for each block in the stack and the median
 static void	set_index(t_stack **a)
 {
 	int		i;
@@ -33,6 +34,8 @@ static void	set_index(t_stack **a)
 	}
 }
 
+// To know which block in b is the closest smallest to each block in a
+// And if there is no closest smallest, we take the biggest in b
 void	set_target_a(t_stack **a, t_stack **b)
 {
 	t_stack	*head_a;
@@ -76,15 +79,17 @@ static void	print_i(t_stack **a)
 	}
 }
 
+// To calculate the push cost for each block
 void	push_cost(t_stack **a, t_stack **b)
 {
 	t_stack	*head_a;
 	int		sum;
-	int len_a = stack_size(*a);
-	int len_b = stack_size(*b);
+	int		len_a;
+	int		len_b;
 
+	len_a = stack_size(*a);
+	len_b = stack_size(*b);
 	head_a = *a;
-	printf("in here outside\n");
 	while (head_a)
 	{
 		sum = 0;
@@ -99,17 +104,17 @@ void	push_cost(t_stack **a, t_stack **b)
 		head_a->push_cost = sum;
 		head_a = head_a->next;
 	}
-
 }
 
+// To know the cheapest to push to b
 void	set_cheapest(t_stack **a)
 {
-	t_stack *head_a;
-	t_stack *cheapest_block;
+	t_stack	*head_a;
+	t_stack	*cheapest_block;
 
 	head_a = *a;
 	cheapest_block = *a;
-	while(head_a)
+	while (head_a)
 	{
 		head_a->cheapest = false;
 		if (head_a->push_cost < cheapest_block->push_cost)
@@ -123,8 +128,13 @@ void	set_cheapest(t_stack **a)
 
 void	turk_algorithm(t_stack **a, t_stack **b)
 {
-	pb(b, a);
-	pb(b, a);
+	int	len;
+
+	len = stack_size(a);
+	if (len > 3)
+		pb(b, a);
+	if (len > 3)
+		pb(b, a);
 	set_index(a);
 	set_index(b);
 	set_target_a(a, b);
