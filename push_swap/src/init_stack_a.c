@@ -5,79 +5,130 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/27 11:21:50 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/03/29 14:01:49 by rlarbi           ###   ########.fr       */
+/*   Created: 2025/03/29 15:02:50 by rlarbi            #+#    #+#             */
+/*   Updated: 2025/04/02 14:49:31 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-// Convert a string in long
-static long	ft_atol(const char *str)
+// Set the index for each block in the stack and the median
+void	set_index(t_stack *a)
 {
-	size_t	i;
-	long	res;
-	int		sign;
+	int	i;
+	int	m_value;
 
 	i = 0;
-	res = 0;
-	sign = 1;
-	if (str[i] == '-')
+	m_value = stack_size(a) / 2;
+	while (a)
 	{
-		sign = -sign;
-		i++;
-	}
-	while (str[i] >= 48 && str[i] <= 57)
-	{
-		res = res * 10 + (str[i] - '0');
-		i++;
-	}
-	return (res * sign);
-}
-
-// Add a new block in the end of the stack
-static void	add_block(t_stack **stack, int value)
-{
-	t_stack	*last_block;
-	t_stack	*block;
-
-	if (!stack)
-		return ;
-	block = malloc(sizeof(t_stack));
-	if (!block)
-		return ;
-	block->next = NULL;
-	block->nb = value;
-	if (!(*stack))
-	{
-		*stack = block;
-		block->prev = NULL;
-	}
-	else
-	{
-		last_block = get_last_block(*stack);
-		last_block->next = block;
-		block->prev = last_block;
+		a->i = i;
+		if (i <= m_value)
+			a->above_median = true;
+		else
+			a->above_median = false;
+		a = a->next;
+		++i;
 	}
 }
 
-// Initialize the a stack with the args in the CLI
-void	init_stack_a(t_stack **a, char **array)
+// To know which block in b is the closest smallest to each block in a
+// And if there is no closest smallest, we take the biggest in b
+static void	set_target_a(t_stack **a, t_stack **b)
 {
-	int		i;
-	long	nbr;
+	t_stack	*head_a;
+	t_stack	*head_b;
+	t_stack	*target;
+	long	flag;
 
-	i = 0;
-	while (array[i])
+	flag = LONG_MIN;
+	head_a = *a;
+	while (head_a)
 	{
-		if (is_valid_number(array[i]))
-			free_errors(a);
-		nbr = ft_atol(array[i]);
-		if (nbr > INT_MAX || nbr < INT_MIN)
-			free_errors(a);
-		if (has_duplicate(*a, (int)nbr))
-			free_errors(a);
-		add_block(a, (int)nbr);
-		i++;
+		head_b = *b;
+		while (head_b)
+		{
+			if (head_a->nb > head_b->nb && head_b->nb > flag)
+			{
+				flag = head_b->nb;
+				target = head_b;
+			}
+			head_b = head_b->next;
+		}
+		if (flag == LONG_MIN)
+			head_a->target = find_max(*b);
+		else
+			head_a->target = target;
+		head_a = head_a->next;
 	}
+}
+
+static void	print_i(t_stack **a)
+{
+	while (*a)
+	{
+		printf("the value is %d\n", (*a)->nb);
+		printf("the index  is %d\n", (*a)->i);
+		printf("the value is above median %d\n", (*a)->above_median);
+		printf("the target value is %d\n", (*a)->target->nb);
+		printf("the push cost is %d\n", (*a)->push_cost);
+		printf("the cheapp is %d\n", (*a)->cheapest);
+		(*a) = (*a)->next;
+	}
+}
+
+// To calculate the push cost for each block
+static void	push_cost(t_stack **a, t_stack **b)
+{
+	t_stack	*head_a;
+	int		sum;
+	int		len_a;
+	int		len_b;
+
+	len_a = stack_size(*a);
+	len_b = stack_size(*b);
+	head_a = *a;
+	while (head_a)
+	{
+		sum = 0;
+		if (head_a->above_median)
+			sum += head_a->i;
+		else
+			sum += (len_a - (head_a->i));
+		if (head_a->target->above_median)
+			sum += head_a->target->i;
+		else
+			sum += (len_b - head_a->target->i);
+		head_a->push_cost = sum;
+		head_a = head_a->next;
+	}
+}
+
+// To know the cheapest to push to b
+void	set_cheapest(t_stack **a)
+{
+	t_stack	*head_a;
+	t_stack	*cheapest_block;
+
+	head_a = *a;
+	cheapest_block = *a;
+	while (head_a)
+	{
+		head_a->cheapest = false;
+		if (head_a->push_cost < cheapest_block->push_cost)
+		{
+			cheapest_block = head_a;
+		}
+		head_a = head_a->next;
+	}
+	cheapest_block->cheapest = true;
+}
+
+void	initializer(t_stack *a, t_stack *b)
+{
+	set_index(a);
+	set_index(b);
+	set_target_a(&a, &b);
+	push_cost(&a, &b);
+	set_cheapest(&a);
 }

@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 23:57:30 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/03/29 20:48:47 by rlarbi           ###   ########.fr       */
+/*   Updated: 2025/04/02 15:11:29 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,23 +48,26 @@ void				free_errors(t_stack **a);
 char				**ft_split(char const *s, char c);
 
 void				init_stack_a(t_stack **a, char **array);
+t_stack				*get_cheapest(t_stack *stack);
+
 void				turk_algorithm(t_stack **a, t_stack **b);
-void				set_target_a(t_stack **a, t_stack **b);
-void				push_cost(t_stack **a, t_stack **b);
+
 void				set_cheapest(t_stack **a);
+void				set_index(t_stack *a);
+void				initializer(t_stack *a, t_stack *b);
 
 /*--------------------INSTRUCTIONS--------------------*/
 void				sa(t_stack **a);
 void				sb(t_stack **b);
 void				ss(t_stack **a, t_stack **b);
 
-void				ra(t_stack **a, bool print);
-void				rb(t_stack **b, bool print);
-void				rr(t_stack **a, t_stack **b, bool print);
+void				ra(t_stack **a);
+void				rb(t_stack **b);
+void				rr(t_stack **a, t_stack **b);
 
-void				rra(t_stack **a, bool print);
-void				rrb(t_stack **b, bool print);
-void				rrr(t_stack **a, t_stack **b, bool print);
+void				rra(t_stack **a);
+void				rrb(t_stack **b);
+void				rrr(t_stack **a, t_stack **b);
 
 void				pa(t_stack **a, t_stack **b);
 void				pb(t_stack **b, t_stack **a);

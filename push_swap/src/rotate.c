@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 11:57:38 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/03/19 17:55:57 by rlarbi           ###   ########.fr       */
+/*   Updated: 2025/04/02 15:10:02 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,26 +28,23 @@ static void	rotate(t_stack **stack)
 }
 
 // For the stack a
-void	ra(t_stack **a, bool print)
+void	ra(t_stack **a)
 {
 	rotate(a);
-	if (print == false)
-		write(1, "ra\n", 3);
+	write(1, "ra\n", 3);
 }
 
 // For the stack b
-void	rb(t_stack **b, bool print)
+void	rb(t_stack **b)
 {
 	rotate(b);
-	if (print == false)
-		write(1, "rb\n", 3);
+	write(1, "rb\n", 3);
 }
 
 // For both at the same time
-void	rr(t_stack **a, t_stack **b, bool print)
+void	rr(t_stack **a, t_stack **b)
 {
 	rotate(a);
 	rotate(b);
-	if (print == false)
-		write(1, "rr\n", 3);
+	write(1, "rr\n", 3);
 }
