@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 23:57:30 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/04/07 18:40:29 by rlarbi           ###   ########.fr       */
+/*   Updated: 2025/04/08 00:17:23 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <stdbool.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
 
 typedef struct s_stack
 {
@@ -38,13 +37,14 @@ int					stack_size(t_stack *stack);
 bool				is_sorted(t_stack *stack);
 
 void				sort_three(t_stack **a);
+void				min_block_top(t_stack **a);
 
 int					is_valid_number(char *arg);
 int					has_duplicate(t_stack *a, int n);
 void				free_stack(t_stack **stack);
 void				free_errors(t_stack **a);
 
-char				**ft_split(char const *s, char c);
+char				**ft_split(const char *s, char c);
 
 void				init_stack_a(t_stack **a, char **array);
 t_stack				*get_cheapest(t_stack *stack);

@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:13:02 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/03/19 11:16:01 by rlarbi           ###   ########.fr       */
+/*   Updated: 2025/04/08 00:07:23 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ char	**ft_split(char const *s, char c)
 	split[i] = NULL;
 	return (split);
 }
+
 /* // TODO: Main
 int	main(void)
 {

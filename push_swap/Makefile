@@ -7,15 +7,17 @@ INCLUDE = -I include
 SRC_DIR = src
 SRCS = $(SRC_DIR)/ft_split.c \
        $(SRC_DIR)/init_stack_a.c \
-	   $(SRC_DIR)/init_stack.c \
+       $(SRC_DIR)/init_stack_b.c \
+       $(SRC_DIR)/init_stack.c \
        $(SRC_DIR)/parsing.c \
        $(SRC_DIR)/main.c \
        $(SRC_DIR)/push.c \
        $(SRC_DIR)/reverse_rotate.c \
        $(SRC_DIR)/rotate.c \
-	   $(SRC_DIR)/sort_stack.c \
+       $(SRC_DIR)/sort_stack.c \
        $(SRC_DIR)/swap.c \
        $(SRC_DIR)/utils.c \
+       $(SRC_DIR)/utils2.c \
 
 OBJS = $(SRCS:.c=.o)
 

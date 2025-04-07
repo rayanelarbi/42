@@ -6,65 +6,80 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:25:46 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/04/07 18:44:25 by rlarbi           ###   ########.fr       */
+/*   Updated: 2025/04/08 00:14:33 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-static void prepare_both(t_stack **a, t_stack **b)
+// Rotate both stacks a and b until the elements of a and b pointed by
+// cheapest_block are at the top of their respective stacks
+static void	rotate_both(t_stack **a, t_stack **b, t_stack *cheapest_block)
 {
-	t_stack *cheapest;
-	t_stack *head_a = *a;
-	t_stack *head_b = *b;
-	cheapest = get_cheapest(*a);
-	while (*a != cheapest)
-	{
-		if (cheapest->above_median)
-			ra(a);
-		else
-			rra(a);
-		*a = (*a)->next;
-	}
-	while (*b != cheapest->target)
-	{
-		if (cheapest->target->above_median)
-			rb(b);
-		else
-			rrb(b);
-		*b = (*b)->next;
-	}
+	while (*b != cheapest_block->target && *a != cheapest_block)
+		rr(a, b);
 	set_index(*a);
 	set_index(*b);
+}
+
+// Reverse rotate both stacks a and b until the elements of a and b pointed by
+// cheapest_block are at the top of their respective stacks
+static void	rev_rotate_both(t_stack **a, t_stack **b, t_stack *cheapest_block)
+{
+	while (*b != cheapest_block->target && *a != cheapest_block)
+		rrr(a, b);
+	set_index(*a);
+	set_index(*b);
+}
+
+// Move the cheapest block of a to b
+static void	move_a_to_b(t_stack **a, t_stack **b)
+{
+	t_stack	*block;
+	t_stack	*target;
+
+	block = get_cheapest(*a);
+	target = block->target;
+	if (block->above_median && target->above_median)
+		rotate_both(a, b, block);
+	else if (!block->above_median && !target->above_median)
+		rev_rotate_both(a, b, block);
+	push_cheapest(a, block, 'a');
+	push_cheapest(b, target, 'b');
 	pb(b, a);
 }
 
+// Move the cheapest block of b to a
+static void	move_b_to_a(t_stack **a, t_stack **b)
+{
+	t_stack	*target;
 
+	target = (*b)->target;
+	push_cheapest(a, target, 'a');
+	pa(a, b);
+}
 
-// Move the min block on top of a
-// static void min_block_top(t_stack **a)
-// {
-// 	while ((*a)->nb != find_min(*a)->nb)
-// 	{
-// 		if (find_min(*a)->above_median)
-// 			ra(a);
-// 		else
-// 			rra(a);
-// 	}
-// }
-
+// Sort the stacks with the turk algorithm
 void	turk_algorithm(t_stack **a, t_stack **b)
 {
-	stack_size(*a);
-	if (stack_size(*a) > 3)
-		pb(b, a);
-	if (stack_size(*a) > 3)
-		pb(b, a);
-	while (stack_size(*a) > 3)
-	{
-		printf("in the while\n");
-		a_initializer(*a, *b);
-		prepare_both(a, b);
-	}
+	int	len;
 
+	len = stack_size(*a);
+	if (len-- > 3 && !is_sorted(*a))
+		pb(b, a);
+	if (len-- > 3 && !is_sorted(*a))
+		pb(b, a);
+	while (len-- > 3 && !is_sorted(*a))
+	{
+		a_initializer(*a, *b);
+		move_a_to_b(a, b);
+	}
+	sort_three(a);
+	while (*b)
+	{
+		b_initializer(*a, *b);
+		move_b_to_a(a, b);
+	}
+	set_index(*a);
+	min_block_top(a);
 }

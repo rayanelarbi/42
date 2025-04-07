@@ -1,40 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/24 16:08:27 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/04/08 00:16:19 by rlarbi           ###   ########.fr       */
+/*   Created: 2025/04/07 22:51:28 by rlarbi            #+#    #+#             */
+/*   Updated: 2025/04/07 23:18:24 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int	main(int ac, char **av)
+// Algorithm that sort the three first elements of the stack
+void	sort_three(t_stack **a)
 {
-	t_stack	*a;
-	t_stack	*b;
+	t_stack	*max;
 
-	a = NULL;
-	b = NULL;
-	if (ac == 1 || (ac == 2 && !av[1][0]))
-		return (EXIT_FAILURE);
-	else if (ac == 2)
-		av = ft_split(av[1], ' ');
-	init_stack_a(&a, av + 1);
-	if (ac == 2)
-		free(av);
-	if (!is_sorted(a))
+	max = find_max(*a);
+	if (*a == max)
+		ra(a);
+	else if ((*a)->next == max)
+		rra(a);
+	if ((*a)->nb > (*a)->next->nb)
+		sa(a);
+}
+
+// Move the min block on top of a
+void	min_block_top(t_stack **a)
+{
+	while ((*a)->nb != find_min(*a)->nb)
 	{
-		if (stack_size(a) == 2)
-			sa(&a);
-		else if (stack_size(a) == 3)
-			sort_three(&a);
+		if (find_min(*a)->above_median)
+			ra(a);
 		else
-			turk_algorithm(&a, &b);
+			rra(a);
 	}
-	free_stack(&a);
-	return (0);
 }
