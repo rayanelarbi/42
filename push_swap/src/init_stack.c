@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 11:21:50 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/04/03 20:09:45 by rlarbi           ###   ########.fr       */
+/*   Updated: 2025/04/07 16:29:54 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,20 +97,23 @@ void	init_stack_a(t_stack **a, char **array)
 }
 
 // Find the cheapest block to push
-void	push(t_stack **a, t_stack **b, t_stack *block)
+void	push_cheapest(t_stack **stack, t_stack *block, char stack_name)
 {
-	while (*a)
+	while (*stack != block)
 	{
-		if (block->above_median)
-			ra(a);
-		else
-			rra(a);
-	}
-	while (*b)
-	{
-		if (block->above_median)
-			rb(*b);
-		else
-			rrb(b);
+		if (stack_name == 'a')
+		{
+			if (block->above_median)
+				ra(stack);
+			else
+				rra(stack);
+		}
+		else if (stack_name == 'b')
+		{
+			if (block->above_median)
+				rb(stack);
+			else
+				rrb(stack);
+		}
 	}
 }

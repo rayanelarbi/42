@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:08:27 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/04/01 16:35:53 by rlarbi           ###   ########.fr       */
+/*   Updated: 2025/04/07 16:04:37 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	main(int ac, char **av)
 {
 	t_stack	*a;
-	char	**tmp;
 	t_stack	*b;
 
 	a = NULL;
@@ -23,14 +22,10 @@ int	main(int ac, char **av)
 	if (ac == 1 || (ac == 2 && !av[1][0]))
 		return (EXIT_FAILURE);
 	else if (ac == 2)
-	{
-		tmp = ft_split(av[1], ' ');
-		init_stack_a(&a, tmp);
-	}
-	else
-	{
-		init_stack_a(&a, av + 1);
-	}
+		av = ft_split(av[1], ' ');
+	init_stack_a(&a, av + 1);
+	if (ac == 2)
+		free(av);
 	if (!is_sorted(a))
 	{
 		if (stack_size(a) == 3)
@@ -51,9 +46,9 @@ void	sort_three(t_stack **a)
 
 	max = find_max(*a);
 	if (*a == max)
-		ra(a, false);
+		ra(a);
 	else if ((*a)->next == max)
-		rra(a, false);
+		rra(a);
 	if ((*a)->nb > (*a)->next->nb)
 		sa(a);
 }

@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 23:57:30 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/04/02 15:11:29 by rlarbi           ###   ########.fr       */
+/*   Updated: 2025/04/07 16:31:02 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-// REMOVEEEEEEEE
-# include <stdio.h>
 typedef struct s_stack
 {
 	int				nb;
@@ -49,12 +47,14 @@ char				**ft_split(char const *s, char c);
 
 void				init_stack_a(t_stack **a, char **array);
 t_stack				*get_cheapest(t_stack *stack);
-
-void				turk_algorithm(t_stack **a, t_stack **b);
+void				push_cheapest(t_stack **stack, t_stack *block,
+						char stack_name);
 
 void				set_cheapest(t_stack **a);
 void				set_index(t_stack *a);
-void				initializer(t_stack *a, t_stack *b);
+void				a_initializer(t_stack *a, t_stack *b);
+
+void				turk_algorithm(t_stack **a, t_stack **b);
 
 /*--------------------INSTRUCTIONS--------------------*/
 void				sa(t_stack **a);

@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 15:02:50 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/04/02 14:49:31 by rlarbi           ###   ########.fr       */
+/*   Updated: 2025/04/07 16:38:09 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,20 +63,6 @@ static void	set_target_a(t_stack **a, t_stack **b)
 	}
 }
 
-static void	print_i(t_stack **a)
-{
-	while (*a)
-	{
-		printf("the value is %d\n", (*a)->nb);
-		printf("the index  is %d\n", (*a)->i);
-		printf("the value is above median %d\n", (*a)->above_median);
-		printf("the target value is %d\n", (*a)->target->nb);
-		printf("the push cost is %d\n", (*a)->push_cost);
-		printf("the cheapp is %d\n", (*a)->cheapest);
-		(*a) = (*a)->next;
-	}
-}
-
 // To calculate the push cost for each block
 static void	push_cost(t_stack **a, t_stack **b)
 {
@@ -124,7 +110,8 @@ void	set_cheapest(t_stack **a)
 	cheapest_block->cheapest = true;
 }
 
-void	initializer(t_stack *a, t_stack *b)
+// For initialize the a stack
+void	a_initializer(t_stack *a, t_stack *b)
 {
 	set_index(a);
 	set_index(b);
