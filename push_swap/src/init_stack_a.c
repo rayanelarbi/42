@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 15:02:50 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/04/07 16:38:09 by rlarbi           ###   ########.fr       */
+/*   Updated: 2025/04/07 17:30:48 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void	set_cheapest(t_stack **a)
 	cheapest_block->cheapest = true;
 }
 
-// For initialize the a stack
+// For initialize the a stack, the index, target push_cost etc.
 void	a_initializer(t_stack *a, t_stack *b)
 {
 	set_index(a);
