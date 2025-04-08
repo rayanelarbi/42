@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 22:51:28 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/04/07 23:18:24 by rlarbi           ###   ########.fr       */
+/*   Updated: 2025/04/08 20:24:52 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,18 @@ void	min_block_top(t_stack **a)
 		else
 			rra(a);
 	}
+}
+
+// Free each str inside the tab and the tab
+void	free_arr(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
 }

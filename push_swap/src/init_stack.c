@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 11:21:50 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/04/07 23:36:25 by rlarbi           ###   ########.fr       */
+/*   Updated: 2025/04/08 19:46:32 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ t_stack	*get_cheapest(t_stack *stack)
 }
 
 // Initialize the a stack with the args in the CLI
-void	init_stack_a(t_stack **a, char **array)
+void	init_stack(t_stack **a, char **array, bool n)
 {
 	int		i;
 	long	nbr;
@@ -85,15 +85,17 @@ void	init_stack_a(t_stack **a, char **array)
 	while (array[i])
 	{
 		if (is_valid_number(array[i]))
-			free_errors(a);
+			free_errors(a, array, n);
 		nbr = ft_atol(array[i]);
 		if (nbr > INT_MAX || nbr < INT_MIN)
-			free_errors(a);
+			free_errors(a, array, n);
 		if (has_duplicate(*a, (int)nbr))
-			free_errors(a);
+			free_errors(a, array, n);
 		add_block(a, (int)nbr);
 		i++;
 	}
+	if (n == true)
+		free_arr(array);
 }
 
 // Find the cheapest block to push

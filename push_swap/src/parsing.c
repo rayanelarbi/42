@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 15:11:54 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/03/29 20:58:24 by rlarbi           ###   ########.fr       */
+/*   Updated: 2025/04/08 20:20:54 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,11 @@ void	free_stack(t_stack **stack)
 }
 
 // Free the a stack w' free_stack and write Error on stderr
-void	free_errors(t_stack **a)
+void	free_errors(t_stack **a, char **arr, bool n)
 {
 	free_stack(a);
+	if (n == true)
+		free_arr(arr);
 	write(2, "Error\n", 6);
 	exit(EXIT_FAILURE);
 }

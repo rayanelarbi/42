@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 15:02:50 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/04/08 00:08:18 by rlarbi           ###   ########.fr       */
+/*   Updated: 2025/04/08 20:21:16 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ static void	set_target_a(t_stack **a, t_stack **b)
 	t_stack	*target;
 	long	flag;
 
-	flag = LONG_MIN;
 	head_a = *a;
 	while (head_a)
 	{
 		head_b = *b;
+		flag = LONG_MIN;
 		while (head_b)
 		{
 			if (head_a->nb > head_b->nb && head_b->nb > flag)

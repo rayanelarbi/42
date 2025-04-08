@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:25:46 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/04/08 00:14:33 by rlarbi           ###   ########.fr       */
+/*   Updated: 2025/04/08 20:20:13 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,15 @@ static void	move_a_to_b(t_stack **a, t_stack **b)
 	block = get_cheapest(*a);
 	target = block->target;
 	if (block->above_median && target->above_median)
-		rotate_both(a, b, block);
+	{
+		while (block != *a && target != *b)
+			rotate_both(a, b, block);
+	}
 	else if (!block->above_median && !target->above_median)
-		rev_rotate_both(a, b, block);
+	{
+		while (block != *a && target != *b)
+			rev_rotate_both(a, b, block);
+	}
 	push_cheapest(a, block, 'a');
 	push_cheapest(b, target, 'b');
 	pb(b, a);
