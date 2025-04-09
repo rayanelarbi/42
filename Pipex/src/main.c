@@ -6,32 +6,37 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 13:22:20 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/04/09 17:17:37 by rlarbi           ###   ########.fr       */
+/*   Updated: 2025/04/09 19:35:59 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "pipex.h"
 
-int	main(void)
+int	main(int ac, char **av)
 {
-	int		fd[2];
-	pid_t	pid;
-	char	buffer[100];
+	int arr[] = {1, 2, 3, 1, 2, 3};
+	int sizeArr = sizeof(arr) / sizeof(int);
+	int fd[2];
+	int id;
+	int start;
+	int end;
 
-	pipe(fd);
-	pid = fork();
-	if (pid == 0)
+	id = fork();
+	if (pipe(fd) == -1)
+		return (error_exit);
+
+	if (id == -1)
+		return (error_exit);
+
+	if (id == 0)
 	{
-		// Child: write in pipe
-		close(fd[0]);
-		write(fd[1], "hello\n", 6);
+		start = 0;
+		end = sizeArr / 2;
 	}
 	else
 	{
-		// Parent: read from pipe
-		close(fd[1]);
-		read(fd[0], buffer, 100);
-		write(1, buffer, 6);
+		start = sizeArr / 2;
+		end = sizeArr;
 	}
 }
