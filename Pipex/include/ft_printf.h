@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/09 13:22:20 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/04/09 17:17:37 by rlarbi           ###   ########.fr       */
+/*   Created: 2024/11/21 21:57:40 by rlarbi            #+#    #+#             */
+/*   Updated: 2025/04/09 17:00:21 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include "pipex.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-int	main(void)
-{
-	int		fd[2];
-	pid_t	pid;
-	char	buffer[100];
+# include <stdarg.h>
+# include <unistd.h>
 
-	pipe(fd);
-	pid = fork();
-	if (pid == 0)
-	{
-		// Child: write in pipe
-		close(fd[0]);
-		write(fd[1], "hello\n", 6);
-	}
-	else
-	{
-		// Parent: read from pipe
-		close(fd[1]);
-		read(fd[0], buffer, 100);
-		write(1, buffer, 6);
-	}
-}
+void	ft_putchar_len(char c, int *len);
+void	ft_string(char *args, int *len);
+void	ft_number(int nb, int *len);
+void	ft_hexadecimal(unsigned int x, int *len, char x_or_x);
+void	ft_unsigned_int(unsigned int u, int *len);
+void	ft_pointer(size_t ptr, int *len);
+
+int		ft_printf(const char *str, ...);
+#endif

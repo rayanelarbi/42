@@ -1,37 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_utils_2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/09 13:22:20 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/04/09 17:17:37 by rlarbi           ###   ########.fr       */
+/*   Created: 2024/12/12 05:30:35 by rlarbi            #+#    #+#             */
+/*   Updated: 2025/04/09 17:05:52 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "pipex.h"
 
-int	main(void)
+// Pointer, (nil) for null
+void	ft_pointer(size_t ptr, int *len)
 {
-	int		fd[2];
-	pid_t	pid;
-	char	buffer[100];
+	char	str[25];
+	int		i;
+	char	*base_char;
 
-	pipe(fd);
-	pid = fork();
-	if (pid == 0)
+	base_char = "0123456789abcdef";
+	i = 0;
+	if (ptr == 0)
 	{
-		// Child: write in pipe
-		close(fd[0]);
-		write(fd[1], "hello\n", 6);
+		write(1, "(nil)", 5);
+		(*len) += 5;
+		return ;
 	}
-	else
+	write(1, "0x", 2);
+	(*len) += 2;
+	while (ptr != 0)
 	{
-		// Parent: read from pipe
-		close(fd[1]);
-		read(fd[0], buffer, 100);
-		write(1, buffer, 6);
+		str[i] = base_char[ptr % 16];
+		ptr = ptr / 16;
+		i++;
+	}
+	while (i--)
+	{
+		ft_putchar_len(str[i], len);
 	}
 }
