@@ -5,10 +5,10 @@ RM = rm -f
 CFLAGS = -Wall -Wextra -Werror -g3
 INCLUDE = -I include
 
-SRC_DIRS = src printf
+SRC_DIR = src
 OBJ_DIR = obj
 
-SRC_FILES = $(foreach dir, $(SRC_DIRS), $(wildcard $(dir)/*.c))
+SRC_FILES = $(wildcard $(SRC_DIR)/*.c)
 OBJ_FILES = $(patsubst %.c, $(OBJ_DIR)/%.o, $(SRC_FILES))
 
 # Create obj/ with subdirs if needed
@@ -36,3 +36,4 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+

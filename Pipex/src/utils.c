@@ -6,11 +6,10 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:19:40 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/04/09 18:43:30 by rlarbi           ###   ########.fr       */
+/*   Updated: 2025/04/10 17:50:24 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
 #include "pipex.h"
 
 // Print error on the stderr
