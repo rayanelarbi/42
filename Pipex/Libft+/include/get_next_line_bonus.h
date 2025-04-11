@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/09 13:37:04 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/04/11 20:43:22 by rlarbi           ###   ########.fr       */
+/*   Created: 2024/12/19 23:46:49 by rlarbi            #+#    #+#             */
+/*   Updated: 2024/12/20 17:12:28 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
-# include "../Libft+/include/libft.h"
-# include <fcntl.h>
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+
 # include <stdio.h>
 # include <stdlib.h>
-# include <string.h>
-# include <sys/wait.h>
 # include <unistd.h>
 
-void	error(void);
+char	*get_next_line(int fd);
+
+char	*ft_add_and_free(char *line, char *buffer);
+char	*ft_read_and_add(int fd, char *line);
+char	*ft_extract_until_newline(char *line);
+char	*ft_remove_until_newline(char *line);
 
 #endif

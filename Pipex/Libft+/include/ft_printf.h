@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/09 13:37:04 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/04/11 20:43:22 by rlarbi           ###   ########.fr       */
+/*   Created: 2024/11/21 21:57:40 by rlarbi            #+#    #+#             */
+/*   Updated: 2024/12/12 09:15:10 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-# include "../Libft+/include/libft.h"
-# include <fcntl.h>
+# include <stdarg.h>
+# include <stddef.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <string.h>
-# include <sys/wait.h>
 # include <unistd.h>
 
-void	error(void);
+void	ft_putchar_len(char c, int *len);
+void	ft_string(char *args, int *len);
+void	ft_number(int nb, int *len);
+void	ft_hexadecimal(unsigned int x, int *len, char x_or_x);
+void	ft_unsigned_int(unsigned int u, int *len);
+void	ft_pointer(size_t ptr, int *len);
 
+int		ft_printf(const char *str, ...);
 #endif

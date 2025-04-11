@@ -9,10 +9,7 @@ SRC_DIR = src
 OBJ_DIR = obj
 
 SRC_FILES = $(wildcard $(SRC_DIR)/*.c)
-OBJ_FILES = $(patsubst %.c, $(OBJ_DIR)/%.o, $(SRC_FILES))
-
-# Create obj/ with subdirs if needed
-DIRS_TO_MAKE = $(sort $(dir $(OBJ_FILES)))
+OBJ_FILES = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))
 
 all: $(NAME)
 
@@ -20,9 +17,8 @@ $(NAME): $(OBJ_FILES)
 	@$(CC) $(CFLAGS) $(OBJ_FILES) -o $(NAME)
 	@echo "\033[1;32mCompilation done !\033[0m"
 
-# Compile .c into obj/ keeping folder structure
-$(OBJ_DIR)/%.o: %.c
-	@mkdir -p $(dir $@)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 clean:
@@ -36,4 +32,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
-
