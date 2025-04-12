@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:19:40 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/04/12 17:03:16 by rlarbi           ###   ########.fr       */
+/*   Updated: 2025/04/12 19:03:54 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,17 +75,22 @@ void	exe(char *av, char **env_path)
 	char	*path;
 
 	cmd = ft_split(av, ' ');
+	if (cmd[0] == NULL || cmd[0][0] == '\0')
+	{
+		free_tab(cmd);
+		exit(127);
+	}
 	path = get_path(cmd[0], env_path);
 	if (!path)
 	{
 		free_tab(cmd);
-		error();
+		exit(127);
 	}
 	if (execve(path, cmd, env_path) == -1)
 	{
 		free(path);
 		free_tab(cmd);
-		error();
+		exit(126);
 	}
 	free(path);
 	free_tab(cmd);

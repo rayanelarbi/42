@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:18:40 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/04/12 14:34:25 by rlarbi           ###   ########.fr       */
+/*   Updated: 2025/04/12 19:32:37 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	child_process(char **av, char **env_path, int *pipe)
 	dup2(pipe[1], STDOUT_FILENO);
 	dup2(fd, STDIN_FILENO);
 	close(pipe[0]);
+	close(pipe[1]);
 	exe(av[2], env_path);
 }
 
@@ -40,6 +41,7 @@ void	parent_process(char **av, char **env_path, int *pipe)
 		error();
 	dup2(pipe[0], STDIN_FILENO);
 	dup2(fd, STDOUT_FILENO);
+	close(pipe[0]);
 	close(pipe[1]);
 	exe(av[3], env_path);
 }
@@ -47,7 +49,9 @@ void	parent_process(char **av, char **env_path, int *pipe)
 int	main(int ac, char **av, char **env_path)
 {
 	int		fd[2];
-	pid_t	pid;
+	pid_t	pid1;
+	pid_t	pid2;
+	int		status;
 
 	if (ac != 5)
 	{
@@ -57,12 +61,27 @@ int	main(int ac, char **av, char **env_path)
 	}
 	if (pipe(fd) == -1)
 		error();
-	pid = fork();
-	if (pid == -1)
+
+	pid1 = fork();
+	if (pid1 == -1)
 		error();
-	if (pid == 0)
+	if (pid1 == 0)
 		child_process(av, env_path, fd);
-	waitpid(pid, NULL, 0);
-	parent_process(av, env_path, fd);
-	return (0);
+
+	pid2 = fork();
+	if (pid2 == -1)
+		error();
+	if (pid2 == 0)
+		parent_process(av, env_path, fd);
+
+	// Parent ferme les deux extrémités du pipe pour éviter les fuites
+	close(fd[0]);
+	close(fd[1]);
+
+	// Attend les deux processus enfants
+	waitpid(pid1, &status, 0);
+	waitpid(pid2, &status, 0);
+
+	return (WEXITSTATUS(status));
 }
+
