@@ -25,7 +25,7 @@ all: libft $(NAME)
 
 # Règle pour compiler la libft
 libft:
-	@$(MAKE) -C $(LIBFT_DIR) -s  # Appelle make dans le dossier Libft+ en mode silencieux
+	@$(MAKE) -C $(LIBFT_DIR) -s
 	@echo "\033[1;32mLibft compiled !\033[0m"
 
 # Compilation de pipex avec la libft

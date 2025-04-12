@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:18:40 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/04/12 19:32:37 by rlarbi           ###   ########.fr       */
+/*   Updated: 2025/04/12 20:26:20 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,42 +46,39 @@ void	parent_process(char **av, char **env_path, int *pipe)
 	exe(av[3], env_path);
 }
 
+// Function that launch children
+void	launch_children(char **av, char **env, int *fd, t_proc *proc)
+{
+	proc->pid1 = fork();
+	if (proc->pid1 == -1)
+		error();
+	if (proc->pid1 == 0)
+		child_process(av, env, fd);
+	proc->pid2 = fork();
+	if (proc->pid2 == -1)
+		error();
+	if (proc->pid2 == 0)
+		parent_process(av, env, fd);
+}
+
 int	main(int ac, char **av, char **env_path)
 {
 	int		fd[2];
-	pid_t	pid1;
-	pid_t	pid2;
+	t_proc	proc;
 	int		status;
 
 	if (ac != 5)
 	{
-		ft_putstr_fd("\033[0;31mERROR\033[0m\n", 2);
+		ft_putstr_fd("\033[0;31mERRORRRRRRRRRRRRR\033[0m\n", 2);
 		ft_putstr_fd("Type : ./pipex <file1> <cmd1> <cmd2> <file2>\n", 1);
 		return (EXIT_FAILURE);
 	}
 	if (pipe(fd) == -1)
 		error();
-
-	pid1 = fork();
-	if (pid1 == -1)
-		error();
-	if (pid1 == 0)
-		child_process(av, env_path, fd);
-
-	pid2 = fork();
-	if (pid2 == -1)
-		error();
-	if (pid2 == 0)
-		parent_process(av, env_path, fd);
-
-	// Parent ferme les deux extrémités du pipe pour éviter les fuites
+	launch_children(av, env_path, fd, &proc);
 	close(fd[0]);
 	close(fd[1]);
-
-	// Attend les deux processus enfants
-	waitpid(pid1, &status, 0);
-	waitpid(pid2, &status, 0);
-
+	waitpid(proc.pid1, &status, 0);
+	waitpid(proc.pid2, &status, 0);
 	return (WEXITSTATUS(status));
 }
-

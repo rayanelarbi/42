@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 13:37:04 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/04/12 14:34:51 by rlarbi           ###   ########.fr       */
+/*   Updated: 2025/04/12 20:25:08 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,14 @@
 # include <sys/wait.h>
 # include <unistd.h>
 
+typedef struct s_proc
+{
+	pid_t	pid1;
+	pid_t	pid2;
+}	t_proc;
+
 void	error(void);
 void	exe(char *av, char **env_path);
+void	launch_children(char **av, char **env, int *fd, t_proc *proc);
 
 #endif
