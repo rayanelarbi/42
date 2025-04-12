@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:18:40 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/04/11 21:00:22 by rlarbi           ###   ########.fr       */
+/*   Updated: 2025/04/12 14:34:25 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	child_process(char **av, char **env_path, int *pipe)
 	dup2(pipe[1], STDOUT_FILENO);
 	dup2(fd, STDIN_FILENO);
 	close(pipe[0]);
-	e(av[2], env_path);
+	exe(av[2], env_path);
 }
 
 /* Parent process that take the data from the pipe (right side) and change
@@ -41,7 +41,7 @@ void	parent_process(char **av, char **env_path, int *pipe)
 	dup2(pipe[0], STDIN_FILENO);
 	dup2(fd, STDOUT_FILENO);
 	close(pipe[1]);
-	e(av[3], env_path);
+	exe(av[3], env_path);
 }
 
 int	main(int ac, char **av, char **env_path)
@@ -51,19 +51,18 @@ int	main(int ac, char **av, char **env_path)
 
 	if (ac != 5)
 	{
-		ft_putstr_fd("\033[0;31mError\033[0m\n", 2);
+		ft_putstr_fd("\033[0;31mERROR\033[0m\n", 2);
 		ft_putstr_fd("Type : ./pipex <file1> <cmd1> <cmd2> <file2>\n", 1);
+		return (EXIT_FAILURE);
 	}
-	else
-	{
-		if (pipe(fd) == -1)
-			error();
-		pid = fork();
-		if (pid == -1)
-			error();
-		if (pid == 0)
-			child_process(av, env_path, pipe);
-		parent_process(av, env_path, pipe);
-	}
+	if (pipe(fd) == -1)
+		error();
+	pid = fork();
+	if (pid == -1)
+		error();
+	if (pid == 0)
+		child_process(av, env_path, fd);
+	waitpid(pid, NULL, 0);
+	parent_process(av, env_path, fd);
 	return (0);
 }

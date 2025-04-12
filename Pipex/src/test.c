@@ -6,29 +6,29 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 18:01:08 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/04/11 18:02:03 by rlarbi           ###   ########.fr       */
+/*   Updated: 2025/04/12 17:02:16 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	main(void)
-{
-	int	fd;
-	int	x;
+// int	main(void)
+// {
+// 	int	fd;
+// 	int	x;
 
-	printf("Opening...\n");
-	fd = open("myfifo", O_RDWR);
-	if (fd == -1)
-		return (2);
-	printf("Opened\n");
-	x = 97;
-	if (write(fd, &x, sizeof(x)) == -1)
-		return (1);
-	printf("Writtend\n");
-	close(fd);
-	printf("closed\n");
-}
+// 	printf("Opening...\n");
+// 	fd = open("myfifo", O_RDWR);
+// 	if (fd == -1)
+// 		return (2);
+// 	printf("Opened\n");
+// 	x = 97;
+// 	if (write(fd, &x, sizeof(x)) == -1)
+// 		return (1);
+// 	printf("Writtend\n");
+// 	close(fd);
+// 	printf("closed\n");
+// }
 
 // int	main(void)
 // {

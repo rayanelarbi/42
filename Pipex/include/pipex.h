@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 13:37:04 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/04/11 20:43:22 by rlarbi           ###   ########.fr       */
+/*   Updated: 2025/04/12 14:34:51 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@
 # include <unistd.h>
 
 void	error(void);
+void	exe(char *av, char **env_path);
 
 #endif

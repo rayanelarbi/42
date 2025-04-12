@@ -58,23 +58,31 @@ BONUS = src/ft_lstadd_back.c \
 
 BONUS_OBJS = $(BONUS:.c=.o)
 
+# Compilation de la libft
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(AR) $(ARFLAGS) $(NAME) $(OBJS)
+	@$(AR) $(ARFLAGS) $(NAME) $(OBJS)
 
+# Compilation avec bonus
 bonus: $(OBJS) $(BONUS_OBJS)
-	$(AR) $(ARFLAGS) $(NAME) $(OBJS) $(BONUS_OBJS)
+	@$(AR) $(ARFLAGS) $(NAME) $(OBJS) $(BONUS_OBJS)
+	@echo "Libft with bonus compiled!"
 
+# Suppression des fichiers objets
 clean:
-	$(RM) $(OBJS) $(BONUS_OBJS)
+	@$(RM) $(OBJS) $(BONUS_OBJS)
 
+# Suppression complète (objets + libft.a)
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
+	@echo "\033[1;31m$(NAME) deleted !\033[0m"
 
+# Recompilation complète
 re: fclean all
 
-.PHONY: all clean fclean re bonus
-
+# Regles pour compiler chaque fichier source en fichier objet
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+.PHONY: all clean fclean re bonus
