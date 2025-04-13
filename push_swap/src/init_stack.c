@@ -6,13 +6,13 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 11:21:50 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/04/08 19:46:32 by rlarbi           ###   ########.fr       */
+/*   Updated: 2025/04/13 14:43:37 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-// Convert a string in long
+// Convert a string in long and check the overflow
 static long	ft_atol(const char *str)
 {
 	size_t	i;
@@ -22,16 +22,23 @@ static long	ft_atol(const char *str)
 	i = 0;
 	res = 0;
 	sign = 1;
-	if (str[i] == '-')
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		sign = -sign;
+		if (str[i] == '-')
+			sign = -1;
 		i++;
 	}
-	while (str[i] >= 48 && str[i] <= 57)
+	while (str[i] >= '0' && str[i] <= '9')
 	{
 		res = res * 10 + (str[i] - '0');
+		if ((sign == 1 && res > INT_MAX) || (sign == -1 && - res < INT_MIN))
+			print_error();
 		i++;
 	}
+	if (str[i] != '\0')
+		print_error();
 	return (res * sign);
 }
 

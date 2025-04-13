@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 23:57:30 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/04/08 23:52:07 by rlarbi           ###   ########.fr       */
+/*   Updated: 2025/04/13 14:37:26 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ bool				is_sorted(t_stack *stack);
 void				sort_three(t_stack **a);
 void				min_block_top(t_stack **a);
 void				free_arr(char **arr);
+void				print_error(void);
 
 int					is_valid_number(char *arg);
 int					has_duplicate(t_stack *a, int n);

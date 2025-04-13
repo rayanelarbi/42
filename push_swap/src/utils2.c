@@ -6,7 +6,7 @@
 /*   By: rlarbi <rlarbi@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 22:51:28 by rlarbi            #+#    #+#             */
-/*   Updated: 2025/04/08 20:24:52 by rlarbi           ###   ########.fr       */
+/*   Updated: 2025/04/13 14:37:07 by rlarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,11 @@ void	free_arr(char **arr)
 		i++;
 	}
 	free(arr);
+}
+
+// Print error msg and return EXIT_FAILURE
+void	print_error(void)
+{
+	write(2, "Error\n", 6);
+	exit(EXIT_FAILURE);
 }
