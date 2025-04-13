@@ -10,7 +10,7 @@ SRC_DIR = src
 OBJ_DIR = obj
 
 # Liste des fichiers sources et objets de pipex
-SRC_FILES = $(wildcard $(SRC_DIR)/*.c)
+SRC_FILES = $(SRC_DIR)/pipex.c $(SRC_DIR)/utils.c
 OBJ_FILES = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))
 
 # Dossier libft
