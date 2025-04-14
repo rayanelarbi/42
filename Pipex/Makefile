@@ -1,4 +1,5 @@
 NAME = pipex
+BONUS_NAME = pipex_bonus
 
 CC = gcc
 RM = rm -f
@@ -9,31 +10,40 @@ INCLUDE = -I include
 SRC_DIR = src
 OBJ_DIR = obj
 
-# Liste des fichiers sources et objets de pipex
+# Fichiers sources classiques et objets
 SRC_FILES = $(SRC_DIR)/pipex.c $(SRC_DIR)/utils.c
 OBJ_FILES = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))
+
+# Fichiers sources bonus et objets bonus
+SRC_BONUS_FILES = $(SRC_DIR)/pipex_bonus.c $(SRC_DIR)/utils_bonus.c
+OBJ_BONUS_FILES = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_BONUS_FILES))
 
 # Dossier libft
 LIBFT_DIR = Libft+
 LIBFT_MAKEFILE = $(LIBFT_DIR)/Makefile
-
-# Ajouter libft.a dans les fichiers à lier
 LIBFT = $(LIBFT_DIR)/libft.a
 
-# Règle principale qui compile pipex et la libft
+# Règle principale
 all: libft $(NAME)
 
-# Règle pour compiler la libft
+# Compilation de la libft
 libft:
 	@$(MAKE) -C $(LIBFT_DIR) -s
 	@echo "\033[1;32mLibft compiled !\033[0m"
 
-# Compilation de pipex avec la libft
+# Compilation de pipex
 $(NAME): $(OBJ_FILES) $(LIBFT)
-	@$(CC) $(CFLAGS) $(OBJ_FILES) $(LIBFT) -o $(NAME)  # Lier la libft à pipex
+	@$(CC) $(CFLAGS) $(OBJ_FILES) $(LIBFT) -o $(NAME)
 	@echo "\033[1;32mPipex compiled !\033[0m"
 
-# Compilation des fichiers sources en objets
+# Compilation bonus
+bonus: libft $(BONUS_NAME)
+
+$(BONUS_NAME): $(OBJ_BONUS_FILES) $(LIBFT)
+	@$(CC) $(CFLAGS) $(OBJ_BONUS_FILES) $(LIBFT) -o $(BONUS_NAME)
+	@echo "\033[1;32mPipex compiled !\033[0m"
+
+# Compilation des fichiers objets
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
@@ -43,13 +53,13 @@ clean:
 	@$(RM) -r $(OBJ_DIR)
 	@echo "\033[1;33mObject files deleted !\033[0m"
 
-# Nettoyage complet : objets et exécutable
+# Nettoyage complet
 fclean: clean
-	@$(RM) $(NAME)
+	@$(RM) $(NAME) $(BONUS_NAME)
 	@echo "\033[1;31m$(NAME) deleted !\033[0m"
 	@$(MAKE) -C $(LIBFT_DIR) fclean -s
 
 # Recompilation complète
 re: fclean all
 
-.PHONY: all clean fclean re libft
+.PHONY: all clean fclean re libft bonus
